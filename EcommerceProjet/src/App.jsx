@@ -1,36 +1,58 @@
-import Header from "./Components/Layout/Header"
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+import Header from "./Components/Layout/Header";
 import Product from "./Components/Product/Product";
 import Cart from "./Components/Cart/Cart";
-
-import React from "react";
+import Spinner from 'react-bootstrap/Spinner';
+import Alert from 'react-bootstrap/Alert';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css'
-
-import {useState,useEffect} from 'react'
+import './index.css';
 
 function App() {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [show, setShow] = useState(false);  // Ce hook doit être ici, hors de toute condition
 
-    const data = [
-        {id :1, nom : "biere", prix: 5, img : 'https://dummyimage.com/286x180/702470/fff.png&text=biere'},
-        {id :2, nom : "soft", prix: 2,img: 'https://dummyimage.com/286x180/702470/fff.png&text=soft' },
-        {id :3, nom : "alcool", prix: 8, img: 'https://dummyimage.com/286x180/702470/fff.png&text=alcool'}
-    ];
+    useEffect(() => {
+        axios.get('http://localhost:3000/api/product')
+        .then((response) => {
+            setData(response.data.products);
+            setLoading(false);
+        })
+        .catch((error) => {
+            setError(error);
+            setLoading(false);
+        });
+    }, []);
 
+    if (loading) {
+        return <Spinner className='spinnerclass' animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </Spinner>;
+    }
 
-    // usestate pour afficher le panier
-    const [show, setShow] = useState(false); 
+    if (error) {
+        return <Alert variant="danger">
+            <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+            <p>
+              {error.message || "Network Error"}
+            </p>
+        </Alert>;
+    }
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    
 
-    return(
+    return (
         <React.Fragment>
-            <Header setShow={handleShow}/>
-            <Product data={data}/>
-            <Cart show={show} setShow={handleClose}/>
+            <Header setShow={handleShow} />
+            <Product data={data} />
+            <Cart show={show} setShow={handleClose} />
         </React.Fragment>
     );
 }
-export default App
+
+export default App;
