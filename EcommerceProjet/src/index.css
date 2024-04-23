@@ -28,3 +28,9 @@
     justify-content: center; 
     height: 80vh; 
 }
+
+.containerTrash{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

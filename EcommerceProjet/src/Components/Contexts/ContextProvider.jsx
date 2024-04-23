@@ -28,6 +28,16 @@ function cartReducer(state, action) {
                 items: updatedItems,
                 totalAmount: state.totalAmount + totalPrice // Utilisation de totalPrice
             };
+        case "REMOVE_ITEM":
+            const itemToRemove = state.items.find(item => item.id === action.payload.id);
+            const updatedTotalAmount = state.totalAmount - (itemToRemove.price * itemToRemove.quantity);
+            
+            return {
+                ...state,
+                items: state.items.filter(item => item.id !== action.payload.id),
+                totalAmount: updatedTotalAmount
+            };
+
         default:
             return state;
     }

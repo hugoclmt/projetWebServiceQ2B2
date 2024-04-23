@@ -7,8 +7,17 @@ import Table from 'react-bootstrap/Table';
 
 function Cart(props) {
 
-    const { state } = useContext(CartContext);
+    const { state, dispatch } = useContext(CartContext);
     const { items, totalAmount } = state;
+
+    const removeProduct = (id) => {
+        dispatch({
+            type: "REMOVE_ITEM",
+            payload: {
+                id: id,
+            }
+        });
+    };
 
   return (
     <>
@@ -29,6 +38,7 @@ function Cart(props) {
                         <th>Name</th>
                         <th>Price</th>
                         <th>Amount</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +48,13 @@ function Cart(props) {
                                 <td>{item.title}</td>
                                 <td>{item.price}</td>
                                 <td>{item.quantity}</td>
+                                <td>
+                                    <div className='containerTrash'>
+                                        <button onClick={()=>removeProduct(item.id)}>
+                                            <p>Delete</p>
+                                        </button>
+                                    </div>
+                                </td>
                             </tr>
                         ))}
                 </tbody>
@@ -56,3 +73,4 @@ function Cart(props) {
 }
 
 export default Cart;
+
