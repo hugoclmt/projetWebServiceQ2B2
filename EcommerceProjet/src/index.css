@@ -1,7 +1,6 @@
 .styleHeader{
     display: flex;
     justify-content: space-between;
-
 }
 
 .styleCartBtn{
@@ -23,8 +22,9 @@
     display: flex;
 }
 
-.spinnerclass{
+.containerSpinner{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: center; 
+    justify-content: center; 
+    height: 80vh; 
 }

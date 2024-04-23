@@ -14,34 +14,19 @@ function App() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [show, setShow] = useState(false);  // Ce hook doit être ici, hors de toute condition
+    const [isShow, setShow] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:3000/api/product')
-        .then((response) => {
+        .then(response => {
             setData(response.data.products);
             setLoading(false);
         })
-        .catch((error) => {
-            setError(error);
+        .catch(err => {
+            setError(err);
             setLoading(false);
         });
     }, []);
-
-    if (loading) {
-        return <Spinner className='spinnerclass' animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-        </Spinner>;
-    }
-
-    if (error) {
-        return <Alert variant="danger">
-            <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-            <p>
-              {error.message || "Network Error"}
-            </p>
-        </Alert>;
-    }
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -49,8 +34,23 @@ function App() {
     return (
         <React.Fragment>
             <Header setShow={handleShow} />
-            <Product data={data} />
-            <Cart show={show} setShow={handleClose} />
+            {loading ? (
+                <div className='containerSpinner'>
+                    <Spinner className='spinnerclass' animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                </div>
+            ) : error ? (
+                <Alert variant="danger">
+                    <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+                    <p>{error.message || "Network Error"}</p>
+                </Alert>
+            ) : (
+                <React.Fragment>
+                    <Product data={data} />
+                    {isShow && <Cart isShow={isShow} setShow={handleClose} />}
+                </React.Fragment>
+            )}
         </React.Fragment>
     );
 }

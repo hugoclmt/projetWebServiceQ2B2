@@ -7,7 +7,7 @@ function Cart(props) {
   return (
     <>
         <Modal
-            show={props.show}
+            show={props.isShow}
             onHide={props.setShow}
             backdrop="static"
             keyboard={false}
