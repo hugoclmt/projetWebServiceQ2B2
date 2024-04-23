@@ -10,6 +10,8 @@ import Alert from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
+import { CartProvider } from './Components/Contexts/Context';
+
 function App() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -32,10 +34,10 @@ function App() {
     const handleShow = () => setShow(true);
 
     return (
-        <React.Fragment>
+        <CartProvider>
             <Header setShow={handleShow} />
             {loading ? (
-                <div className='containerSpinner'>
+                <div className='containerSpin'>
                     <Spinner className='spinnerclass' animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </Spinner>
@@ -51,7 +53,7 @@ function App() {
                     {isShow && <Cart isShow={isShow} setShow={handleClose} />}
                 </React.Fragment>
             )}
-        </React.Fragment>
+        </CartProvider>
     );
 }
 
