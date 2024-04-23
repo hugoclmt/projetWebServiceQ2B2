@@ -19,6 +19,8 @@ function Cart(props) {
         });
     };
 
+    
+
   return (
     <>
         <Modal
@@ -58,7 +60,7 @@ function Cart(props) {
                             </tr>
                         ))}
                 </tbody>
-                </Table>
+            </Table>
                 <h3>Total Amount : {totalAmount.toFixed(2)}</h3>
             </Modal.Body>
             <Modal.Footer>
