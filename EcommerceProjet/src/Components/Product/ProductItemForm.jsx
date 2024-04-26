@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 
 const ProductItemForm = (props) =>{
     const {dispatch} = useContext(CartContext);
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(0);
 
     const addProduct = () => {
         dispatch({
@@ -33,7 +33,7 @@ const ProductItemForm = (props) =>{
                     type="number"
                     id="inputPassword5"
                     aria-describedby="passwordHelpBlock"
-                    min={1}
+                    min={0}
                     />
                     <Button onClick={addProduct} variant="primary">Add</Button>
                 </div>
