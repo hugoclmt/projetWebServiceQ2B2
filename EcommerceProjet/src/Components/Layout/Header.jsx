@@ -5,6 +5,9 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import React from 'react';
 import HeaderCartButton from './HeaderCartButton';
 
+import { Link } from 'react-router-dom';
+
+
 const Header = (props) =>
 {
     return (
@@ -12,11 +15,11 @@ const Header = (props) =>
             <div className='styleHeader'>
                 <Navbar id='navbarHeader' expand="lg" className="bg-body-tertiary">
                     <Container>
-                        <Navbar.Brand href="#home">E-Commerce</Navbar.Brand>
+                        <Navbar.Brand href="/">E-Commerce</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
-                                <Nav.Link href="#home">Accueil</Nav.Link>
+                                <Nav.Link href="/">Accueil</Nav.Link>
                                 <Nav.Link href="#link">Liens</Nav.Link>
                                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

@@ -8,6 +8,7 @@ import Cart from "./Components/Cart/Cart";
 import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
 import ProductDetail from './Components/Product/ProductDetail';
+import NotFoundPage from './Components/Error/NotFoundPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
@@ -54,6 +55,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Product data={data}/>}/>
                         <Route path="/Product/:id" element={<ProductDetail/>}  />
+                        <Route path='*' element={<NotFoundPage/>} />
                     </Routes>
                     {isShow && <Cart isShow={isShow} setShow={handleClose} />}
                 </BrowserRouter>
@@ -61,5 +63,4 @@ function App() {
         </CartProvider>
     );
 }
-
 export default App;

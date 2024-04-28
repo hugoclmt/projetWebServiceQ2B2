@@ -12,7 +12,6 @@ const ProductDetail =  () =>{
     useEffect(() => {
         const fetchProductDetails = async () => {
           try {
-            // Remplace 'url_to_your_api' par l'URL réelle de ton API
             const response = await fetch(`http://localhost:3000/api/product/${productId}`);
             if (!response.ok) {
               throw new Error('Network response was not ok');
@@ -36,12 +35,26 @@ const ProductDetail =  () =>{
       const data = product.product;
 
     return (
-        <div>
-            <h1>Product Detail</h1>
-            <p>Product ID: {data._id}</p>
-            <p>Product Name: {data.name}</p>
-            <img src={data.mainImage} alt={data.name} />
+      <div className='containerParent'>
+        <div className='container1'>
+          <img className='imgDetailProduct' src={data.mainImage} alt={data.name} />
         </div>
+        <div className='container2'>
+          <div className='container2Enfant1' ><p>Nom</p></div>
+          <div className='container2Enfant2'><p>{data.name}</p></div>
+        </div>
+        <div className='container2'>
+          <div className=''>
+            <p>Description</p>
+          </div>
+          <div>
+            <ul>
+              <li>Category : {data.category}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     );
   
 }
