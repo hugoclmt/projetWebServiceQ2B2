@@ -24,36 +24,49 @@ const ProductDetail =  () =>{
             setLoading(false);
           }
         };
-    
         fetchProductDetails();
       }, [productId]);  // Cette dépendance assure qu
     
+
+
+
+
       if (loading) return <div>Loading...</div>;
       if (error) return <div>Error: {error}</div>;
       if (!product) return <div>No product found</div>;
 
       const data = product.product;
-
+      console.log(data);
     return (
-      <div className='containerParent'>
-        <div className='container1'>
-          <img className='imgDetailProduct' src={data.mainImage} alt={data.name} />
-        </div>
-        <div className='container2'>
-          <div className='container2Enfant1' ><p>Nom</p></div>
-          <div className='container2Enfant2'><p>{data.name}</p></div>
-        </div>
-        <div className='container2'>
-          <div className=''>
-            <p>Description</p>
-          </div>
-          <div>
-            <ul>
-              <li>Category : {data.category}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <div className="product-card">
+        <img src={data.mainImage} alt={data.name} className='product-image' />
+        <table className="product-info">
+          <tr>
+              <th>Nom</th>
+              <td>{data.name}</td>
+          </tr>
+          <tr>
+              <th>Marque :</th>
+              <td>Mac</td>
+          </tr>
+          <tr>
+              <th>Description: </th>
+              <td>{data.description}</td>
+          </tr>
+          <tr>
+              <th>Colors : </th>
+              <td>{data.colors[0].color}</td>
+          </tr>
+          <tr>
+            <th>Size : </th>
+            <td>{data.sizes[0].size}</td>
+          </tr>
+          <tr>
+              <th>Price :</th>
+              <td>{data.price} €</td>
+          </tr>
+      </table>
+    </div>
 
     );
   

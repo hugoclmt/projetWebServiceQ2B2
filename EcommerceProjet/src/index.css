@@ -11,68 +11,55 @@
     width: 100%;
 }
 
-.containerProduct{
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.styleProductItemForm{
-    display: flex;
-}
-
-.containerSpinner{
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    height: 80vh; 
-}
-
 .containerTrash{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
-.containerParent{
+.containerSpin{
     display: flex;
     justify-content: center;
-    align-items: start;
-    flex-direction: column;
-}
-
-.container1{
-    display: flex;
-    justify-content: left;
     align-items: center;
-    padding: 20px;
-    width: 100%;
 }
 
-.container2{
-    display : flex;
-    justify-content: space-between;
+.colCards{
+    display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 20px;
-    width: 100%;
+    width: 50%;
+    padding: 25px;
 }
 
-.container2Enfant1{
+
+
+.product-card {
+    width: 80%;
+    margin: 20px auto;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
     display: flex;
-    justify-content: center;
-    align-items: start;
-    padding: 20px;
-}
-.container2Enfant2{
-    display: flex;
-    justify-content: center;
-    align-items: left;
-
+    flex-direction: row;
+    align-items: center;
 }
 
-.imgDetailProduct{
-    width: 300px;
-    height: 300px;
+.product-image {
+    width: 30%;
+    height: auto;
+}
+
+.product-info {
+    width: 50%;
+    border-collapse: collapse;
+    margin-left: 20px;
+}
+
+.product-info th, .product-info td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #eee;
 }
